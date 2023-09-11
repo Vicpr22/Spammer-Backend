@@ -35,13 +35,14 @@ app.post("/messages", async (req, res) => {
 
 app.put("/messages/:messageId", async (req, res) => {
   const messageId = req.params.messageId;
-  const { text } = req.body;
+  const { text, likes } = req.body;
 
   try {
     const message = await prisma.message.update({
       where: { id: messageId },
       data: {
         text,
+        likes,
       },
     });
 
